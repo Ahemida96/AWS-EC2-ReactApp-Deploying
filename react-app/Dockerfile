@@ -2,7 +2,7 @@
 FROM node:14-slim
 
 # Set the working directory in the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Copy the dependencies file to the working directory
 COPY package.json .
@@ -21,4 +21,3 @@ EXPOSE 3000
 
 # Set the command to run the app
 CMD ["npm", "start"]
-
