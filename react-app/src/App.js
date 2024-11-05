@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import WelcomePage from 'C:\\Users\\Ahmed\\Desktop\\AWS-EC2-ReactApp-Deploying\\react-app\\src\\components\\WelcomePage.tsx';
+import WelcomePage from './components/WelcomePage';
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const App = () => {
