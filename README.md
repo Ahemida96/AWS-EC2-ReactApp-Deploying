@@ -34,15 +34,18 @@ The second method involves using Nginx to serve the static files of the React ap
 ### Prerequisites
 To get started, ensure you have:
 - An AWS account with IAM permissions to launch EC2 instances.
+- DockerHub account and docker installed
 - Basic knowledge of React, Docker, and Nginx.
-- AWS CLI and SSH tools installed on your local machine.
+- SSH tool installed on your local machine (optional).
 
 ### AWS EC2 Configuration
-1. **Launch an EC2 Instance**: Use the AWS Management Console or CLI to launch an EC2 instance (e.g., Ubuntu 20.04) with the appropriate security group settings. Open ports 80 (HTTP) and 22 (SSH) at minimum.
-2. **Connect to the Instance**: Use SSH to connect to your EC2 instance:
-   ```bash
-   ssh -i path/to/your-key.pem ubuntu@your-ec2-public-ip
-   ```
+1. **Launch an EC2 Instance**:
+   - Use the AWS Management Console or CLI to launch an EC2 instance (I used Ubuntu 20.04)
+   - Create new key pair (We will use this key pair to SSH into the EC2 instance we’re creating).
+   - with the appropriate security group settings. Open ports 80 (HTTP), 22 (SSH) and 3000(Custom TCP).
+3. **Connect to the Instance**: Use SSH to connect to your EC2 instance:
+   To access the EC2 server, you can use MobaXterm, a free software that you can download from https://mobaxterm.mobatek.net/.
+   or use AWS Console 
 
 ---
 
