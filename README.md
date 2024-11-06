@@ -66,7 +66,7 @@ To get started, ensure you have:
    ```
 
 
-Your application should now be accessible via `http://your-ec2-public-ip`.
+Your application should now be accessible via `http://your-ec2-public-ip` on port 3000.
 
 ### Nginx Deployment
 1. **Install Nginx**:
