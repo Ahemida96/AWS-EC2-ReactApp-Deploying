@@ -1,0 +1,39 @@
+name: Build and Deploy Docker Image to EC2
+
+on:
+  push:
+    branches: [ "Master" ]
+  pull_request:
+    branches: [ "Master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Login to DockerHub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t react-app .
+        docker tag react-app ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
+
+    - name: Install SSH Key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy Docker image to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_INSTANCE_IP }} << 'EOF'
+        docker pull ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
+        docker stop $(docker ps -a -q) || true
+        docker run -d -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
+        EOF
