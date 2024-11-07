@@ -21,6 +21,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
+        cd ../react-app
         docker build -t react-app .
         docker tag react-app ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
