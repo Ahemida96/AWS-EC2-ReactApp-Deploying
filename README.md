@@ -1,6 +1,6 @@
-# React Application Deployment on AWS EC2
+# Automated React Application Deployment on AWS EC2
 
-This repository provides a comprehensive guide to deploying a React application on an AWS EC2 instance. Two deployment methods are demonstrated: one using Docker containers and the other with Nginx as a web server.
+This repository provides a comprehensive guide to deploying a React application on an AWS EC2 instance using github actions. Two deployment methods are demonstrated: one using Docker containers and the other with Nginx as a web server.
 
 ## Table of Contents
 - [About the Project](#about-the-project)
@@ -35,7 +35,7 @@ The second method involves using Nginx to serve the static files of the React ap
 To get started, ensure you have:
 - An AWS account with IAM permissions to launch EC2 instances.
 - DockerHub account and docker installed
-- Basic knowledge of React, Docker, and Nginx.
+- Basic knowledge of React, Docker, Github Actions and Nginx.
 - SSH tool installed on your local machine (optional).
 
 ### AWS EC2 Configuration
