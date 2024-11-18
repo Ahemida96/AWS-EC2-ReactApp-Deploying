@@ -2,8 +2,8 @@ import React from 'react';
 const WelcomePage = () => {
   return (
     <div className="welcome-page">
-      <h1>Welcome to CI/CD Automated App</h1>
-      <p>This is a sample welcome page.</p>
+      <h1>Containraized App</h1>
+      <p>Using Docker.</p>
     </div>
   );
 };
