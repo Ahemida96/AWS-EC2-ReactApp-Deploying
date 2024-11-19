@@ -34,6 +34,7 @@ jobs:
       - name: Setup and deploy with Nginx
         run: |
           cd react-app
+          npm install
           npm run build
           sudo cp -r build/* /var/www/react/
           sudo systemctl restart nginx
