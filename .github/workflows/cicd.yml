@@ -1,4 +1,4 @@
-name: Build and Deploy Docker Image to EC2
+name: Build and Deploy to Separate Runners
 
 on:
   push:
@@ -7,10 +7,10 @@ on:
     branches: [ "Master" ]
 
 jobs:
-
-  build:
-
-    runs-on: self-hosted
+  # Job for Docker-AWS-Runner
+  build-on-aws-runner:
+    runs-on: Docker-AWS-Runner
+    name: Build and Deploy on AWS-Runner for Docker
 
     steps:
     - name: Checkout repository
@@ -22,4 +22,18 @@ jobs:
         cd react-app
         docker build -t react-app .
         docker run -d -p 3000:3000 react-app
+    
+# Job for Nginx-AWS-Runner
+  build-on-nginx-aws-runner:
+    runs-on: Nginx-AWS-Runner
+    name: Build and Deploy on Nginx-AWS-Runner
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      - name: Setup and deploy with Nginx
+        run: |
+          cd react-app
+          npm run build
+          sudo cp -r build/* /var/www/react/
+          sudo systemctl restart nginx
